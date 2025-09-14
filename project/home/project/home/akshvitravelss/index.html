@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akshvi Travels</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+        color: #333;
+      }
+      a {
+        text-decoration: none;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        height: 120px;
+      }
+      header {
+        background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
+          center/cover no-repeat;
+        color: white;
+        text-align: center;
+        padding: 120px 20px;
+        position: relative;
+      }
+      header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      header h1,
+      header p,
+      header .btn-group {
+        position: relative;
+        z-index: 1;
+      }
+      header h1 {
+        font-size: 48px;
+        margin: 0;
+      }
+      header p {
+        font-size: 22px;
+        margin-top: 10px;
+      }
+      .btn-group a {
+        padding: 15px 25px;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 10px;
+        display: inline-block;
+        transition: 0.3s;
+        color: white;
+      }
+      .btn-call {
+        background: #dabb5f;
+      }
+      .btn-call:hover {
+        background: #de6a4d;
+      }
+      .btn-book {
+        background: #51b59c;
+      }
+      .btn-book:hover {
+        background: #0056b3;
+      }
+      section {
+        padding: 60px 20px;
+        max-width: 1100px;
+        margin: auto;
+      }
+      #about {
+        background: #fdf6f0;
+      }
+      #vehicles .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+      #vehicles .card h3 {
+        margin: 10px 0 5px 0;
+      }
+      #vehicles .card p {
+        margin: 0;
+      }
+      /* Booking Form */
+      #booking {
+        background: #f0f4f8;
+        padding: 60px 20px;
+      }
+      #booking h2 {
+        margin-bottom: 40px;
+        color: #333;
+        text-align: center;
+      }
+      .form-card {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+      .grid-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .grid-form textarea {
+        grid-column: 1/-1;
+        min-height: 100px;
+      }
+      .grid-form button {
+        grid-column: 1/-1;
+        padding: 15px;
+        background: #ff7b54;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .grid-form button:hover {
+        background: #ff5a30;
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #333;
+        color: white;
+        margin-top: 40px;
+      }
+      @media (max-width: 600px) {
+        .gallery {
+          grid-template-columns: 1fr 1fr;
+        }
+        header h1 {
+          font-size: 36px;
+        }
+        header p {
+          font-size: 18px;
+        }
+        .grid-form {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      style="
+        background: #333;
+        color: white;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <span style="font-size: 20px; font-weight: bold">Akshvi Travels</span>
+        <span id="menu-btn" style="font-size: 26px; cursor: pointer">☰</span>
+      </div>
+      <div
+        id="menu-links"
+        style="display: none; flex-direction: column; margin-top: 10px"
+      >
+        <a href="#home" style="color: white; margin: 5px 0">Home</a>
+        <a href="#about" style="color: white; margin: 5px 0">About Us</a>
+        <a href="#categories" style="color: white; margin: 5px 0">Categories</a>
+        <a href="#vehicles" style="color: white; margin: 5px 0">Vehicles</a>
+        <a href="#reviews" style="color: white; margin: 5px 0">Reviews</a>
+        <a href="#booking" style="color: white; margin: 5px 0">Book Now</a>
+      </div>
+    </nav>
+
+    <header id="home">
+      <h1>Akshvi Travels</h1>
+      <p>Explore India with Comfort & Care</p>
+      <div class="btn-group">
+        <a href="tel:+919123456789" class="btn-call">📞 Call Us Now</a>
+        <a href="#booking" class="btn-book">📝 Book Online</a>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <div class="card">
+        <p>
+          <b>Akshvi Travels</b> was born from a dream — a dream that travel
+          should not just be about reaching a destination, but about
+          <b
+            >living a story, feeling the journey, and carrying memories in your
+            heart forever</b
+          >.
+        </p>
+        <p>
+          We believe that <b>every person deserves the joy of travel</b>. To
+          watch the sunrise over new horizons, to laugh with friends on a road
+          trip, to find peace in the quiet of a temple, and to collect moments
+          that no camera can truly capture — only your heart can.
+        </p>
+        <p>
+          With Akshvi Travels, you are not just a customer. You are a traveler,
+          a storyteller, and a dreamer who trusts us to be part of your journey.
+          We promise to make each trip
+          <b>affordable, comfortable, and filled with warmth</b>, because travel
+          is not a luxury — it’s a gift everyone deserves.
+        </p>
+        <p
+          style="
+            font-style: italic;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 22px;
+            color: #333;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+          "
+        >
+          ❤️ “Journeys end, but the memories live forever — let us create them
+          with you.” ❤️
+        </p>
+      </div>
+    </section>
+
+    <!-- Trip Categories -->
+    <section id="categories">
+      <h2>Our Trip Categories</h2>
+      <div class="grid">
+        <!-- City Tour -->
+        <div class="card">
+          <h3>In-City Tours (One Day)</h3>
+          <p>8 Hours / 80 KM → <b>₹3200</b></p>
+          <p>Extra: ₹18/km after 80 km | ₹100/hour</p>
+          <div class="gallery">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Charminar-Pride_of_Hyderabad.jpg/500px-Charminar-Pride_of_Hyderabad.jpg"
+              alt="Charminar"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34-IrL6T2_D8N3nyb-BKSGIUpigeqvW697A&s"
+              alt="Ramoji Film City"
+            />
+            <img
+              src="https://lovelifeandbeyond.in/wp-content/uploads/2022/09/statue-of-equality_hyderabad.jpeg?w=1000"
+              alt="Statue of Equality"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL7DTCM_jq0DKEmCKzVGMi0PrQnrHFKMq14w&s"
+              alt="Tank Bund"
+            />
+          </div>
+        </div>
+        <!-- Short Trips -->
+        <div class="card">
+          <h3>Short Trips (2–3 Days)</h3>
+          <p>
+            Destinations:
+            <b
+              >Srisailam, Tirupati, Warangal, Vijayawada and many more with
+              customised packages.</b
+            >
+          </p>
+          <div class="gallery">
+            <img
+              src="https://m.media-amazon.com/images/I/71owliUaN4L._UF894,1000_QL80_.jpg"
+              alt="Tirupathi"
+            />
+            <img
+              src="https://www.tirthayatra.org/wp-content/uploads/2025/05/108082343_952688908527460_1245978560174854829_n-1-1.jpg"
+              alt="Vijayawada"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG92Q2joPBx17T7u8HfqSlv7nPsIhQFHkCKA&s"
+              alt="Srisailam"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCswsSmUl8CHtbDUrcx3LglgqXjdDGtqCQIg&s"
+              alt="Warangal"
+            />
+          </div>
+        </div>
+        <!-- Long Trips -->
+        <div class="card">
+          <h3>Long Trips (4+ Days)</h3>
+          <p>
+            Explore multiple states with <b>customised itineraries</b> based on
+            your preferences.
+          </p>
+          <div class="gallery">
+            <img
+              src="https://d3sftlgbtusmnv.cloudfront.net/blog/wp-content/uploads/2024/10/Murdeshwar-Cover-Photo--840x425.jpg"
+              alt="Murdeshwar"
+            />
+            <img
+              src="https://www.thehosteller.com/_next/image/?url=https%3A%2F%2Fstatic.thehosteller.com%2Fhostel%2Fimages%2Fimage.jpg%2Fimage-1742556759704.jpg&w=2048&q=75"
+              alt="Alleppey"
+            />
+            <img
+              src="https://www.toshaliresort.com/images/resource/jagannath-temple-puri.jpg"
+              alt="Puri Jaganath"
+            />
+            <img
+              src="https://www.uttarakhandtourtravels.com/wp-content/uploads/2025/04/kedarnath-temple.webp"
+              alt="Kedarnath"
+            />
+          </div>
+        </div>
+        <!-- Budget Friendly -->
+        <div class="card">
+          <h3>Budget-Friendly Travel</h3>
+          <p>
+            Specially designed for bachelors & groups. Calculated per person —
+            affordable, fun, and flexible!
+          </p>
+          <div class="gallery">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST0udGU-h2jdMbdpHi2lTbCs7HOMLD1E0JWg&s"
+              alt="Pondicherry"
+            />
+            <img
+              src="https://s7ap1.scene7.com/is/image/incredibleindia/vagator-beach-goa-city-1-hero?qlt=82&ts=1742158909874"
+              alt="Goa"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoJnWh-bhaXYqzD_Cl5GGR5FurLA1mnWvNHg&s"
+              alt="Coorg"
+            />
+            <img
+              src="https://www.thehosteller.com/_next/image/?url=https%3A%2F%2Fstatic.thehosteller.com%2Fhostel%2Fimages%2Fimage.jpg%2Fimage-1742556759704.jpg&w=2048&q=75"
+              alt="Alleppey"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vehicles -->
+    <section id="vehicles">
+      <h2>🚘 Our Vehicles</h2>
+      <div class="grid">
+        <div class="card">
+          <img
+            src="https://stimg.cardekho.com/images/carexteriorimages/630x420/Maruti/Dzire/11387/1755776445645/front-left-side-47.jpg?imwidth=420&impolicy=resize"
+            alt="Sedan"
+          />
+          <h3>Sedan</h3>
+          <p>4 Seater | Daily & Business trips</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://imgd-ct.aeplcdn.com/370x208/cw/ec/14545/Toyota-Innova-Right-Front-Three-Quarter-72626.jpg?wm=0&q=80"
+            alt="Innova"
+          />
+          <h3>Innova</h3>
+          <p>7 Seater | Family trips</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://img.autocarpro.in/autocarpro/IMG/797/25797/new-innova2.jpg?w=750&h=490&q=75&c=1"
+            alt="Innova Crysta"
+          />
+          <h3>Innova Crysta</h3>
+          <p>7 Seater | Premium comfort</p>
+        </div>
+        <div class="card">
+          <img
+            src="https://outstationcabbooking.co.in/wp-content/uploads/2025/03/tempo-traveller-hire-in-kolkata-14-Seater.jpeg"
+            alt="Tempo Traveller"
+          />
+          <h3>Tempo Traveller</h3>
+          <p>12/17 Seater | Perfect for groups</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews">
+      <h2>⭐ Customer Reviews</h2>
+      <div class="grid">
+        <div class="card">
+          <p>
+            "Had an amazing trip to Srisailam. Very professional driver and
+            clean vehicle. Highly recommend!"
+          </p>
+          <p><b>- Siva.</b></p>
+        </div>
+        <div class="card">
+          <p>
+            "The Innova was very comfortable, driver was polite and on time.
+            Will book again!"
+          </p>
+          <p><b>- Vanitha.</b></p>
+        </div>
+        <div class="card">
+          <p>
+            "We went on a Kerala long trip, everything was well arranged.
+            Excellent service."
+          </p>
+          <p><b>- Anvesh S.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <h2>📅 Book Your Trip</h2>
+      <div class="form-card">
+        <form id="whatsappForm" class="grid-form">
+          <input type="text" id="name" placeholder="👤 Your Name" required />
+          <input type="tel" id="phone" placeholder="📞 Phone Number" required />
+          <input type="date" id="date" required />
+          <input type="time" id="time" required />
+          <input type="text" id="start" placeholder="📍 Start Place" required />
+          <input type="text" id="end" placeholder="🏁 End Place" required />
+          <select id="category" required>
+            <option value="">Select Category</option>
+            <option>City Tour</option>
+            <option>Short Trip</option>
+            <option>Long Trip</option>
+            <option>Budget Travel</option>
+          </select>
+          <textarea id="notes" placeholder="📝 Additional Notes"></textarea>
+          <button type="submit">🚀 Book Now via WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        📞
+        <a href="tel:+91 9346311942" style="color: white">+91 9346311942</a> |
+        ✉️
+        <a href="mailto:akshvitravelss@gmail.com" style="color: white"
+          >akshvitravelss@gmail.com</a
+        >
+      </p>
+      <p>© 2025 Akshvi Travels. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("menu-btn")
+        .addEventListener("click", function () {
+          let links = document.getElementById("menu-links");
+          links.style.display =
+            links.style.display === "flex" ? "none" : "flex";
+        });
+
+      // WhatsApp Booking Form
+      document
+        .getElementById("whatsappForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          let name = encodeURIComponent(document.getElementById("name").value);
+          let phone = encodeURIComponent(
+            document.getElementById("phone").value
+          );
+          let date = encodeURIComponent(document.getElementById("date").value);
+          let time = encodeURIComponent(document.getElementById("time").value);
+          let start = encodeURIComponent(
+            document.getElementById("start").value
+          );
+          let end = encodeURIComponent(document.getElementById("end").value);
+          let category = encodeURIComponent(
+            document.getElementById("category").value
+          );
+          let notes = encodeURIComponent(
+            document.getElementById("notes").value
+          );
+
+          let message = `*Akshvi Travels Booking Request*%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ATime: ${time}%0AStart: ${start}%0AEnd: ${end}%0ACategory: ${category}%0ANotes: ${notes}`;
+          let whatsappURL = `https://wa.me/919346311942?text=${message}`;
+          window.open(whatsappURL, "_blank");
+        });
+    </script>
+  </body>
+</html>
